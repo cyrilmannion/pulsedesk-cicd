@@ -1,4 +1,4 @@
-name: CI
+name: Node.js CI
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
     branches: [ main, dev, staging ]
 
 jobs:
-  test:
+  test-and-build:
     runs-on: ubuntu-latest
 
     strategy:
@@ -18,16 +18,16 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Set up Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: Install dependencies
+      - name: Install dependencies (clean install)
         run: npm ci
 
-      - name: Run tests
+      - name: Run tests (Jest)
         run: npm test
 
-      - name: Build
-        run: npm run build --if-present
+      - name: Run build script
+        run: npm run build
