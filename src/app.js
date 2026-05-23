@@ -1,4 +1,4 @@
-// src/app.js
+// src/app.js  Simple Express application to demonstrate CI/CD pipeline
 const express = require("express");
 const app = express();
 
