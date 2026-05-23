@@ -25,3 +25,5 @@ coverage/
 
 # OS files
 .DS_Store
+EC2 pulsedesk-key.pem
+*.pem
