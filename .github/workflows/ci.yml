@@ -6,6 +6,7 @@ on:
       - main
       - dev
       - staging
+      - "feature/**"
   pull_request:
     branches:
       - main
@@ -15,7 +16,6 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
