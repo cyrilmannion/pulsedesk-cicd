@@ -60,11 +60,11 @@ jobs:
 
       - name: Upload bundle to S3
         run: |
-          aws s3 cp app.zip s3://YOUR_BUCKET_NAME/app.zip
+          aws s3 cp app.zip s3://pulsedesk-codedeploy-artifacts-cjm/app.zip
 
       - name: Deploy via CodeDeploy
         run: |
           aws deploy create-deployment \
             --application-name PulseDeskApp \
             --deployment-group-name PulseDeskStaging \
-            --s3-location bucket=YOUR_BUCKET_NAME,key=app.zip,bundleType=zip
+            --s3-location bucket=pulsedesk-codedeploy-artifacts-cjm,key=app.zip,bundleType=zip
