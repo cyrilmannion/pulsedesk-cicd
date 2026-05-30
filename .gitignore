@@ -27,3 +27,5 @@ coverage/
 .DS_Store
 EC2 pulsedesk-key.pem
 *.pem
+*.txt
+AWSAccessKey.txt
