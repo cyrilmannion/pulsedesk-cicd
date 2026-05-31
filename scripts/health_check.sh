@@ -1,2 +1,4 @@
 #!/bin/bash
-curl -f http://localhost:3000/health || exit 1
+set -e
+
+curl -f http://localhost:3000/health
