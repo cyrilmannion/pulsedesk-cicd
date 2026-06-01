@@ -4,7 +4,7 @@ const app = express();
 const PORT = 3000;
 
 app.get('/', (req, res) => {
-  res.send('PulseDesk app running ✅');
+  res.send('PulseDesk app running now, well done');
 });
 
 app.get('/health', (req, res) => {
