@@ -1,9 +1,13 @@
-// src/app.js  Simple Express application to demonstrate CI/CD pipeline
+// src/app.js
 const express = require("express");
 const app = express();
 
 app.get("/", (req, res) => {
-    res.send("Updated staging environment");
+  res.send("PulseDesk app running now, well done");
+});
+
+app.get("/health", (req, res) => {
+  res.status(200).send("OK");
 });
 
 module.exports = app;
