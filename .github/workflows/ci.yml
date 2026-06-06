@@ -57,8 +57,11 @@ jobs:
           name: newman-reports
           path: newman/
 
-      - name: Build
-        run: npm run build
+      - name: Install client dependencies
+        run: npm ci --prefix client
+
+      - name: Build Next.js client
+        run: npm run build --prefix client
 
   deploy_staging:
     name: CD - Deploy to Staging (AWS CodeDeploy)
@@ -70,11 +73,18 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Install client dependencies (for Next.js build)
+        run: npm ci --prefix client
+
+      - name: Build Next.js client
+        run: npm run build --prefix client
+
       - name: Zip application
         run: |
           zip -r app.zip . \
             -x ".git/*" \
-            -x "node_modules/*"
+            -x "node_modules/*" \
+            -x "client/node_modules/*"
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
@@ -92,4 +102,5 @@ jobs:
           aws deploy create-deployment \
             --application-name PulseDeskApp \
             --deployment-group-name PulseDeskStaging \
-            --s3-location bucket=pulsedesk-codedeploy-artifacts-cjm,key=app.zip,bundleType=zip
+            --s3-location bucket=pulsedesk-codedeploy-artifacts-cjm,key=app.zip,bundleType=zip \
+            --auto-rollback-configuration enabled=true,events=DEPLOYMENT_FAILURE

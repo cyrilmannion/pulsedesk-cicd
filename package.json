@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node server.js",
     "test": "jest",
-    "build": "echo \"Build step executed\""
+    "build": "npm ci --prefix client && npm run build --prefix client"
   },
   "keywords": [],
   "author": "",

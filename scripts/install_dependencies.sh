@@ -18,5 +18,9 @@ node --version
 echo "npm version:"
 npm --version
 
-# Use package-lock.json for deterministic installs
+# Install API dependencies
 npm ci --omit=dev
+
+# Install Next.js client dependencies (needed to run next start)
+echo "Installing Next.js client dependencies..."
+npm ci --prefix client --omit=dev
